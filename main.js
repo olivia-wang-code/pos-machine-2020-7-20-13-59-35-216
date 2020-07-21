@@ -18,7 +18,6 @@ function printReceipt(barcodes) {
 //     'ITEM000004'
 //   ];
   var validItemCodes=Object.keys(getItemCount(barcodes));
-  console.log(validItemCodes);
   var a=getItemCount(barcodes);
 //   console.log(getItemInfo(validItemCodes,a));
   getReciptInfo(getItemInfo(validItemCodes,a));
@@ -50,8 +49,7 @@ module.exports = {
 // }
 function getReciptInfo(itemWithCount){
     var total=0;
-    console.log();
-    console.log('***<store earning no money>Receipt***');
+    console.log('\n***<store earning no money>Receipt***');
     Object.keys(itemWithCount).forEach(key=> {
         console.log(`Name: ${itemWithCount[key].info.name}, Quantity: ${itemWithCount[key].quantity}, Unit price: ${itemWithCount[key].info.price}(yuan), Subtotal: ${(itemWithCount[key].quantity)*(itemWithCount[key].info.price)} (yuan)`);
         total+=(itemWithCount[key].quantity)*(itemWithCount[key].info.price);
