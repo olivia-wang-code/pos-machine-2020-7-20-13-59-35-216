@@ -1,17 +1,11 @@
 function printReceipt(barcodes) {
-  var validItemCodes=Object.keys(getItemCount(barcodes));
+  const validItemCodes=Object.keys(getItemCount(barcodes));
   var a=getItemCount(barcodes);
 //   console.log(getItemInfo(validItemCodes,a));
   let reciptInfo=getReciptInfo(getItemInfo(validItemCodes,a));
   console.log(reciptInfo);
   
 }
-
-
-module.exports = {
-    printReceipt
-};
-
 
 function getReciptInfo(itemWithCount){
     var total=0;
@@ -36,8 +30,8 @@ function getItemCount(inputs){
     return itemWithCount;
 }
 
-
-function getItemInfo(validItemCodes,a){
+//todo rename a itemWithCount
+function getItemInfo(validItemCodes,itemWithCount){
     let dataSource=[
         {
            barcode: 'ITEM000000',
@@ -73,11 +67,11 @@ function getItemInfo(validItemCodes,a){
     validItemCodes.forEach(barCode=>{
         dataSource.forEach(item=>{
             if(item.barcode===barCode){
-                a[barCode].info=item;
+              itemWithCount[barCode].info=item;
             }
         })
     })
-    return a;
+    return itemWithCount;
 }
 
 const barcodes = [
@@ -91,3 +85,8 @@ const barcodes = [
   'ITEM000004'
 ];
 printReceipt(barcodes);
+
+module.exports = {
+  printReceipt
+};
+
