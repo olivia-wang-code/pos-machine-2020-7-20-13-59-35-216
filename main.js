@@ -1,26 +1,10 @@
 function printReceipt(barcodes) {
-//     console.log(`
-// ***<store earning no money>Receipt ***
-// Name: Coca-Cola, Quantity: 5, Unit price: 3 (yuan), Subtotal: 15 (yuan)
-// Name: Sprite, Quantity: 2, Unit price: 3 (yuan), Subtotal: 6 (yuan)
-// Name: Battery, Quantity: 1, Unit price: 2 (yuan), Subtotal: 2 (yuan)
-// ----------------------
-// Total: 23 (yuan)
-// **********************`)
-// var inputs=[
-//     'ITEM000000',
-//     'ITEM000000',
-//     'ITEM000000',
-//     'ITEM000000',
-//     'ITEM000000',
-//     'ITEM000001',
-//     'ITEM000001',
-//     'ITEM000004'
-//   ];
   var validItemCodes=Object.keys(getItemCount(barcodes));
   var a=getItemCount(barcodes);
 //   console.log(getItemInfo(validItemCodes,a));
-  getReciptInfo(getItemInfo(validItemCodes,a));
+  let reciptInfo=getReciptInfo(getItemInfo(validItemCodes,a));
+  console.log(reciptInfo);
+  
 }
 
 
@@ -29,34 +13,16 @@ module.exports = {
 };
 
 
-
-// function Main(){
-//     var inputs=[
-//         'ITEM000000',
-//         'ITEM000000',
-//         'ITEM000000',
-//         'ITEM000000',
-//         'ITEM000000',
-//         'ITEM000001',
-//         'ITEM000001',
-//         'ITEM000004'
-//       ];
-//       var validItemCodes=Object.keys(getItemCount(inputs));
-//       console.log(validItemCodes);
-//       var a=getItemCount(inputs);
-//     //   console.log(getItemInfo(validItemCodes,a));
-//       getReciptInfo(getItemInfo(validItemCodes,a));
-// }
 function getReciptInfo(itemWithCount){
     var total=0;
-    console.log('\n***<store earning no money>Receipt***');
+    var s='\n***<store earning no money>Receipt ***\n';
+    // console.log('\n***<store earning no money>Receipt ***');
     Object.keys(itemWithCount).forEach(key=> {
-        console.log(`Name: ${itemWithCount[key].info.name}, Quantity: ${itemWithCount[key].quantity}, Unit price: ${itemWithCount[key].info.price}(yuan), Subtotal: ${(itemWithCount[key].quantity)*(itemWithCount[key].info.price)} (yuan)`);
+        s+=(`Name: ${itemWithCount[key].info.name}, Quantity: ${itemWithCount[key].quantity}, Unit price: ${itemWithCount[key].info.price} (yuan), Subtotal: ${(itemWithCount[key].quantity)*(itemWithCount[key].info.price)} (yuan)\n`);
         total+=(itemWithCount[key].quantity)*(itemWithCount[key].info.price);
       })
-    console.log('----------------------')
-    console.log(`Total: ${total} (yuan)`);
-    console.log('**********************');
+      s=s+'----------------------'+'\n'+`Total: ${total} (yuan)`+'\n'+'**********************';
+    return s;
 }
 function getItemCount(inputs){
     var itemWithCount={};
@@ -113,3 +79,15 @@ function getItemInfo(validItemCodes,a){
     })
     return a;
 }
+
+const barcodes = [
+  'ITEM000000',
+  'ITEM000000',
+  'ITEM000000',
+  'ITEM000000',
+  'ITEM000000',
+  'ITEM000001',
+  'ITEM000001',
+  'ITEM000004'
+];
+printReceipt(barcodes);
