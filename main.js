@@ -15,14 +15,14 @@ module.exports = {
 
 function getReciptInfo(itemWithCount){
     var total=0;
-    var s='\n***<store earning no money>Receipt ***\n';
+    var reciptInfo='\n***<store earning no money>Receipt ***\n';
     // console.log('\n***<store earning no money>Receipt ***');
     Object.keys(itemWithCount).forEach(key=> {
-        s+=(`Name: ${itemWithCount[key].info.name}, Quantity: ${itemWithCount[key].quantity}, Unit price: ${itemWithCount[key].info.price} (yuan), Subtotal: ${(itemWithCount[key].quantity)*(itemWithCount[key].info.price)} (yuan)\n`);
+        reciptInfo+=(`Name: ${itemWithCount[key].info.name}, Quantity: ${itemWithCount[key].quantity}, Unit price: ${itemWithCount[key].info.price} (yuan), Subtotal: ${(itemWithCount[key].quantity)*(itemWithCount[key].info.price)} (yuan)\n`);
         total+=(itemWithCount[key].quantity)*(itemWithCount[key].info.price);
       })
-      s=s+'----------------------'+'\n'+`Total: ${total} (yuan)`+'\n'+'**********************';
-    return s;
+      reciptInfo=reciptInfo+'----------------------'+'\n'+`Total: ${total} (yuan)`+'\n'+'**********************';
+    return reciptInfo;
 }
 function getItemCount(inputs){
     var itemWithCount={};

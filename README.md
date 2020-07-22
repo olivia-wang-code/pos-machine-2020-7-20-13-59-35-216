@@ -13,10 +13,10 @@
 3.格式化数据
 
 * 输入：itemWithCount:  {info:{barcode:String,name:String,price:int},quantity:int}
-* 输出：String
+* 输出：reciptInfo:String
 
 3.输出数据
 
 * 输入：barcodes: [String]
-* 输出：String
+* 输出：reciptInfo:String
 
